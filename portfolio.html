@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneha Murali Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font setup using Inter as the sans-serif default */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Custom scrollbar styling for a cleaner look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background-color: #6366f1; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+
+        /* Style for the project hover effect */
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.5), 0 4px 6px -2px rgba(99, 102, 241, 0.2);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4f46e5', // Indigo 600
+                        'secondary': '#6366f1', // Indigo 500
+                        'background-dark': '#0f172a', // Slate 900
+                        'card-dark': '#1e293b', // Slate 800
+                    }
+                }
+            }
+        }
+
+        // JavaScript for smooth form submission handling and scrolling (since smooth scroll is handled by CSS)
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // In a real application, you would send this data to a server/email service.
+                    alertMessage('Thank you for your message! I will get back to you soon.', 'success');
+                    contactForm.reset();
+                });
+            }
+
+            function alertMessage(message, type) {
+                const alertBox = document.createElement('div');
+                const baseClasses = 'fixed top-4 right-4 p-4 rounded-lg shadow-xl z-50 transition-opacity duration-300';
+                const typeClasses = type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white';
+
+                alertBox.className = `${baseClasses} ${typeClasses} opacity-0`;
+                alertBox.textContent = message;
+
+                document.body.appendChild(alertBox);
+
+                // Show the alert
+                setTimeout(() => alertBox.classList.remove('opacity-0'), 10);
+
+                // Hide and remove after 4 seconds
+                setTimeout(() => {
+                    alertBox.classList.add('opacity-0');
+                    setTimeout(() => alertBox.remove(), 500);
+                }, 4000);
+            }
+        });
+    </script>
+</head>
+<body class="bg-background-dark text-gray-100 antialiased">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-background-dark/95 backdrop-blur-sm border-b border-card-dark shadow-lg">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-secondary hover:text-primary transition duration-300">
+                SM
+            </a>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#about" class="text-gray-300 hover:text-secondary transition duration-200">About</a>
+                <a href="#skills" class="text-gray-300 hover:text-secondary transition duration-200">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-secondary transition duration-200">Projects</a>
+                <a href="#contact" class="text-gray-300 hover:text-secondary transition duration-200">Contact</a>
+            </div>
+            <a href="#contact" class="hidden sm:block bg-primary hover:bg-secondary text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md shadow-primary/30">
+                Get In Touch
+            </a>
+            <!-- Mobile Menu Placeholder - You might want to implement a hamburger menu here -->
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="hero" class="py-20 md:py-32 flex items-center min-h-screen container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center justify-center w-full">
+                <div class="text-center mt-10 md:mt-0 max-w-4xl mx-auto">
+                    <p class="text-secondary text-lg mb-2 font-medium">Hello, I'm</p>
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-white mb-4">
+                        <span class="block">Sneha Murali</span>
+                    </h1>
+                    <h2 class="text-xl sm:text-3xl text-gray-400 font-light mb-6">
+                        <span class="text-primary">AI Engineer</span> & <span class="text-primary">Data Scientist</span>
+                    </h2>
+                    <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                        Computer Science and Engineering student with a strong foundation in data analysis, artificial intelligence and applied machine learning. Completed training programs with Samsung Research and Development Institute, Bangalore on coding, programming, data analysis, and artificial intelligence.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#projects" class="bg-primary hover:bg-secondary text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-primary/40 transition duration-300 transform hover:scale-[1.02]">
+                            View Work
+                        </a>
+                        <a href="mailto:snehamurali.0704@gmail.com" class="border border-gray-600 text-gray-300 hover:text-secondary hover:border-secondary font-semibold py-3 px-8 rounded-lg transition duration-300">
+                            Email Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About Me Section -->
+        <section id="about" class="py-20 border-t border-card-dark">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-3xl font-bold text-center text-white mb-4">About Me</h3>
+                <p class="text-lg text-secondary text-center mb-12">My Journey & Expertise</p>
+
+                <div class="bg-card-dark p-8 rounded-xl shadow-2xl max-w-4xl mx-auto">
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        I am a dedicated Computer Science and Engineering student specializing in Natural Language Processing (NLP), Deep Learning, and Generative AI. My core mission is to bridge cutting-edge research breakthroughs with tangible, real-world enterprise needs. I focus on developing, training, and deploying advanced models using my primary stack of PyTorch for efficient modeling and Docker for production readiness and scalability.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        My experience includes taking high-impact projects from concept to deployment, such as the 'Arogya-Mitra: Mental Wellness Companion' I developed during the Google GenAI Hackathon in 2025. I prioritize strong engineering principles, ensuring that complex models are not only accurate but also scalable, maintainable, and seamlessly integrated into applications using robust MLOps practices.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Skills Section -->
+        <section id="skills" class="py-20 border-t border-card-dark">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-3xl font-bold text-center text-white mb-4">Core Skills</h3>
+                <p class="text-lg text-secondary text-center mb-12">The Full Stack for AI Development and Deployment</p>
+
+                <div class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                    <!-- Skill Item 1: Deep Learning & Frameworks -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">Deep Learning (PyTorch)</p>
+                        <p class="text-gray-400 text-sm">Model Development & Training</p>
+                    </div>
+                    <!-- Skill Item 2: NLP & GenAI -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">NLP & Generative AI</p>
+                        <p class="text-gray-400 text-sm">Text, Sequence, & LLM Modeling</p>
+                    </div>
+                    <!-- Skill Item 3: Cloud & MLOps -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">MLOps & Docker</p>
+                        <p class="text-gray-400 text-sm">Model Containerization & Serving</p>
+                    </div>
+                    <!-- Skill Item 4: Cloud Platform -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">Google Cloud Platform (GCP)</p>
+                        <p class="text-gray-400 text-sm">Deployment & Compute Resources</p>
+                    </div>
+                    <!-- Skill Item 5: Core ML & Stat Modeling -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">Core ML & Statistics</p>
+                        <p class="text-gray-400 text-sm">Scikit-learn, Regression, Classification</p>
+                    </div>
+                    <!-- Skill Item 6: Data Handling & Querying -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">Data Engineering</p>
+                        <p class="text-gray-400 text-sm">Cleaning, Collection, MySQL</p>
+                    </div>
+                    <!-- Skill Item 7: Python Stack -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">Python Data Stack</p>
+                        <p class="text-gray-400 text-sm">Pandas, NumPy, Matplotlib</p>
+                    </div>
+                    <!-- Skill Item 8: Visualization & EDA -->
+                    <div class="bg-card-dark p-4 rounded-lg text-center border border-card-dark hover:border-secondary transition duration-300 shadow-lg">
+                        <p class="text-xl font-semibold text-white">Visualization & EDA</p>
+                        <p class="text-gray-400 text-sm">Seaborn, Power BI, Insight Generation</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Projects Section -->
+        <section id="projects" class="py-20 border-t border-card-dark">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-3xl font-bold text-center text-white mb-4">Featured Projects</h3>
+                <p class="text-lg text-secondary text-center mb-12">Showcasing my best work</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project Card 1 -->
+                    <div class="project-card bg-card-dark rounded-xl p-6 shadow-2xl transition duration-300 transform">
+                        <h4 class="text-2xl font-semibold text-primary mb-3">Arogya-Mitra</h4>
+                        <p class="text-gray-400 mb-4">A conversational agent built during the Google GenAI Hackathon in 2025 to provide personalized, non-clinical mental wellness support and resource connection.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">Python</span>
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">GenAI</span>
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">Streamlit</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/snehamurali-07/Arogya_Mitra" target="_blank" class="text-gray-300 hover:text-white transition duration-200 flex items-center">
+                                <!-- GitHub Icon (using inline SVG) -->
+                                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.417 2.865 8.17 6.815 9.504.47.086.64-.204.64-.438 0-.214-.007-.78-.01-1.353-2.782.605-3.37-1.34-3.37-1.34-.454-1.155-1.11-1.463-1.11-1.463-.907-.63.07-.618.07-.618 1.002.07 1.53.972 1.53.972.89 1.53 2.342 1.09 2.91.834.09-.648.349-1.09.635-1.341-2.22-.25-4.555-1.11-4.555-4.93 0-1.09.39-1.983 1.03-2.684-.104-.25-.448-1.27.098-2.646 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.008 1.703.11 2.516.321 1.91-1.296 2.75-1.026 2.75-1.026.546 1.376.202 2.396.098 2.646.64.701 1.03 1.593 1.03 2.684 0 3.829-2.338 4.676-4.564 4.922.356.307.674.915.674 1.846 0 1.332-.012 2.407-.012 2.735 0 .234.168.528.644.437C19.14 20.17 22 16.417 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                                Code
+                            </a>
+                            <a href="https://arogya-mitra-snehamurali.streamlit.app/" target="_blank" class="text-primary hover:text-white transition duration-200 flex items-center">
+                                <!-- External Link Icon -->
+                                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="project-card bg-card-dark rounded-xl p-6 shadow-2xl transition duration-300 transform">
+                        <h4 class="text-2xl font-semibold text-primary mb-3">IdeaSprint</h4>
+                        <p class="text-gray-400 mb-4">The ideaSprint is an AI Content Generator which is lightweight web application designed to help marketers and content creators rapidly prototype marketing material.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">Python</span>
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">Flask</span>
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">Gemini API</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/snehamurali-07/IdeaSprint-AI_Content_Generator" target="_blank" class="text-gray-300 hover:text-white transition duration-200 flex items-center">
+                                <!-- GitHub Icon -->
+                                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.417 2.865 8.17 6.815 9.504.47.086.64-.204.64-.438 0-.214-.007-.78-.01-1.353-2.782.605-3.37-1.34-3.37-1.34-.454-1.155-1.11-1.463-1.11-1.463-.907-.63.07-.618.07-.618 1.002.07 1.53.972 1.53.972.89 1.53 2.342 1.09 2.91.834.09-.648.349-1.09.635-1.341-2.22-.25-4.555-1.11-4.555-4.93 0-1.09.39-1.983 1.03-2.684-.104-.25-.448-1.27.098-2.646 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.008 1.703.11 2.516.321 1.91-1.296 2.75-1.026 2.75-1.026.546 1.376.202 2.396.098 2.646.64.701 1.03 1.593 1.03 2.684 0 3.829-2.338 4.676-4.564 4.922.356.307.674.915.674 1.846 0 1.332-.012 2.407-.012 2.735 0 .234.168.528.644.437C19.14 20.17 22 16.417 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                                Code
+                            </a>
+                            <a href="https://ai-content-generator-spr6.onrender.com/" target="_blank" class="text-primary hover:text-white transition duration-200 flex items-center">
+                                <!-- External Link Icon -->
+                                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card bg-card-dark rounded-xl p-6 shadow-2xl transition duration-300 transform">
+                        <h4 class="text-2xl font-semibold text-primary mb-3">Normal Deliveries vs C-Section Deliveries</h4>
+                        <p class="text-gray-400 mb-4">This project analyzes the distribution and frequency of normal (vaginal) vs. C-section deliveries, using two key lenses: 1. Geographical Rate Comparison (Choropleth Maps) 2. Parity-Based Comparison (VBAC Focus)</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">React Native</span>
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">Mobile Dev</span>
+                            <span class="bg-primary/20 text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">SQLite</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/snehamurali-07/Normal-Deliveries-vs-C-Section-Deliveries" target="_blank" class="text-gray-300 hover:text-white transition duration-200 flex items-center">
+                                <!-- GitHub Icon -->
+                                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.417 2.865 8.17 6.815 9.504.47.086.64-.204.64-.438 0-.214-.007-.78-.01-1.353-2.782.605-3.37-1.34-3.37-1.34-.454-1.155-1.11-1.463-1.11-1.463-.907-.63.07-.618.07-.618 1.002.07 1.53.972 1.53.972.89 1.53 2.342 1.09 2.91.834.09-.648.349-1.09.635-1.341-2.22-.25-4.555-1.11-4.555-4.93 0-1.09.39-1.983 1.03-2.684-.104-.25-.448-1.27.098-2.646 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.008 1.703.11 2.516.321 1.91-1.296 2.75-1.026 2.75-1.026.546 1.376.202 2.396.098 2.646.64.701 1.03 1.593 1.03 2.684 0 3.829-2.338 4.676-4.564 4.922.356.307.674.915.674 1.846 0 1.332-.012 2.407-.012 2.735 0 .234.168.528.644.437C19.14 20.17 22 16.417 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="py-20 border-t border-card-dark">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-3xl font-bold text-center text-white mb-4">Get In Touch</h3>
+                <p class="text-lg text-secondary text-center mb-12">I'm currently open to new opportunities.</p>
+
+                <div class="max-w-xl mx-auto bg-card-dark p-8 rounded-xl shadow-2xl">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-4 py-2 bg-background-dark border border-gray-700 rounded-lg text-white focus:ring-primary focus:border-primary transition duration-200">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-2 bg-background-dark border border-gray-700 rounded-lg text-white focus:ring-primary focus:border-primary transition duration-200">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="w-full px-4 py-2 bg-background-dark border border-gray-700 rounded-lg text-white focus:ring-primary focus:border-primary transition duration-200"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-secondary text-white font-semibold py-3 px-4 rounded-lg shadow-lg shadow-primary/40 transition duration-300 transform hover:scale-[1.01]">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-card-dark border-t border-card-dark mt-12 py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 Sneha Murali. All rights reserved.</p>
+            <div class="mt-2 space-x-4">
+                <a href="https://www.linkedin.com/in/snehamurali07" target="_blank" class="hover:text-secondary transition duration-200">LinkedIn</a>
+                <a href="https://github.com/snehamurali-07" target="_blank" class="hover:text-secondary transition duration-200">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
